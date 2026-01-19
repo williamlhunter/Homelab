@@ -1,0 +1,6 @@
+- Research
+- Technitium dns?
+- Jellyfin running on the node with its data
+- dns service
+- network segmentation
+- R stack?
