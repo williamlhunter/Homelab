@@ -1,6 +1,4 @@
 - Research
-- Technitium dns?
-- Jellyfin running on the node with its data
-- dns service
+- Jellyfin running on nfs share
 - network segmentation
 - R stack?
