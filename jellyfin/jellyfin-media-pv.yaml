@@ -9,4 +9,4 @@ spec:
   - ReadWriteMany
   nfs:
     server: truenas.billnet.local
-    path: /mnt/nvme/Data/media
+    path: /mnt/rust/Data/media
