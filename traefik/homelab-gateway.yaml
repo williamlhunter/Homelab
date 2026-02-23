@@ -1,0 +1,21 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: homelab-gateway
+  namespace: default
+spec:
+  gatewayClassName: traefik
+  listeners:
+  - name: https
+    port: 8443
+    protocol: HTTPS
+    hostname: "*.home.williamlhunter.com"
+    tls:
+      mode: Terminate
+      certificateRefs:
+      - kind: Secret
+        name: wildcard-home-tls
+        namespace: default
+    allowedRoutes:
+      namespaces:
+        from: All
