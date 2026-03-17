@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sonarr-config-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  nfs:
+    server: truenas.billnet.local
+    path: /mnt/nvme/Configs/sonarr
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sonarr-media-pv
+spec:
+  capacity:
+    storage: 1Ti
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: truenas.billnet.local
+    path: /mnt/rust/Data/media
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sonarr-download-pv
+spec:
+  capacity:
+    storage: 500Gi
+  accessModes:
+  - ReadWriteMany
+  nfs:
+    server: truenas.billnet.local
+    path: /mnt/rust/Data/deluge

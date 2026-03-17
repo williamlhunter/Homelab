@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deluge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deluge
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: deluge
+    spec:
+      containers:
+        - name: gluetun
+          image: qmcgaw/gluetun
+          securityContext: 
+            capabilities:
+              add:
+                - NET_ADMIN
+          ports:
+            - containerPort: 8112
+          env:
+            - name: VPN_SERVICE_PROVIDER
+              value: protonvpn
+            - name: VPN_TYPE
+              value: wireguard
+            - name: WIREGUARD_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: gluetun-vpn
+                  key: wireguard-private-key
+            - name: SERVER_COUNTRIES
+              value: United States
+            - name: DNS_KEEP_NAMESERVER
+              value: "on"
+        - name: deluge
+          image: linuxserver/deluge:latest
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: data
+              mountPath: /downloads
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "3000"
+            - name: TZ
+              value: America/Denver
+      volumes:
+        - name: tun
+          hostPath:
+            path: /dev/net/tun
+            type: CharDevice
+        - name: config
+          persistentVolumeClaim:
+            claimName: deluge-config-pvc
+        - name: data
+          persistentVolumeClaim:
+            claimName: deluge-data-pvc
