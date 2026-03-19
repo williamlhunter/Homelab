@@ -15,7 +15,7 @@ spec:
         app: radarr
     spec:
       containers:
-        - name: sonarr
+        - name: radarr
           image: linuxserver/radarr:latest
           ports:
             - containerPort: 7878
