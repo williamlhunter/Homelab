@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: radar-config-pv
+  name: radarr-config-pv
 spec:
   capacity:
     storage: 1Gi
@@ -9,12 +9,12 @@ spec:
   - ReadWriteOnce
   nfs:
     server: truenas.billnet.local
-    path: /mnt/nvme/Configs/radar
+    path: /mnt/nvme/Configs/radarr
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: radar-media-pv
+  name: radarr-media-pv
 spec:
   capacity:
     storage: 1Ti
@@ -27,7 +27,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: radar-download-pv
+  name: radarr-download-pv
 spec:
   capacity:
     storage: 500Gi
