@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radarr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radarr
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: radarr
+    spec:
+      containers:
+        - name: sonarr
+          image: linuxserver/radarr:latest
+          ports:
+            - containerPort: 7878
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: downloads
+              mountPath: /downloads
+            - name: media
+              mountPath: /movies
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "3000"
+            - name: TZ
+              value: America/Denver
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: radarr-config-pvc
+        - name: media
+          persistentVolumeClaim:
+            claimName: radarr-media-pvc
+        - name: downloads
+          persistentVolumeClaim:
+            claimName: radarr-downloads-pvc

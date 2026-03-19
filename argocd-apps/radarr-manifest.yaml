@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: radarr
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/williamlhunter/Homelab
+    targetRevision: HEAD
+    path: apps/radarr
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
