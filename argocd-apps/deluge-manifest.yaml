@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prowlarr
+  name: deluge
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/williamlhunter/Homelab
     targetRevision: HEAD
-    path: apps/prowlarr
+    path: apps/deluge
   destination:
     server: https://kubernetes.default.svc
     namespace: default
