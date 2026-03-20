@@ -39,7 +39,7 @@ spec:
               value: "on"
         - name: deluge
           #image: linuxserver/deluge:latest
-          image: linuxserver/deluge:2.2.0-r2-ls365
+          image: linuxserver/deluge:2.2.0-r1-ls364
           volumeMounts:
             - name: config
               mountPath: /config
