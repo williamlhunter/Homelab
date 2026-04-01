@@ -23,6 +23,6 @@ spec:
             - name: data
               mountPath: /var/lib/gitea
       volumes:
-        - name: config
+        - name: data
           persistentVolumeClaim:
             claimName: forgejo-pvc
