@@ -37,10 +37,8 @@ spec:
               value: United States
             - name: DNS_KEEP_NAMESERVER
               value: "on"
-            - name: DOT
-              value: "off"
-            - name: DNS_ADDRESS
-              value: "9.9.9.9"
+            - name: WIREGUARD_MTU
+              value: "1320"
         - name: deluge
           #image: linuxserver/deluge:latest
           image: linuxserver/deluge:2.2.0-r1-ls364
