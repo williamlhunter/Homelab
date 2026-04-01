@@ -37,6 +37,10 @@ spec:
               value: United States
             - name: DNS_KEEP_NAMESERVER
               value: "on"
+            - name: DOT
+              value: "off"
+            - name: DNS_ADDRESS
+              value: "9.9.9.9"
             - name: WIREGUARD_MTU
               value: "1280"
         - name: deluge
