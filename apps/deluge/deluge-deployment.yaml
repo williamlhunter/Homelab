@@ -35,14 +35,13 @@ spec:
                   key: wireguard-private-key
             - name: SERVER_COUNTRIES
               value: United States
-            - name: DNS_KEEP_NAMESERVER
-              value: "on"
             - name: DOT
               value: "off"
             - name: DNS_ADDRESS
               value: "9.9.9.9"
-            - name: WIREGUARD_MTU
-              value: "1280"
+          volumeMounts:
+            - name: tun
+              mountPath: /dev/net/tun
         - name: deluge
           #image: linuxserver/deluge:latest
           image: linuxserver/deluge:2.2.0-r1-ls364
