@@ -44,6 +44,8 @@ spec:
               value: "off"
             - name: DNS_ADDRESS
               value: "9.9.9.9"
+            - name: DNS_KEEP_NAMESERVER
+              value: "on"
           volumeMounts:
             - name: tun
               mountPath: /dev/net/tun
