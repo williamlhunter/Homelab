@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: gluetun
-          image: qmcgaw/gluetun:v3.40.0
+          image: qmcgaw/gluetun
           securityContext: 
             capabilities:
               add:
@@ -46,6 +46,7 @@ spec:
               value: "9.9.9.9"
           volumeMounts:
             - name: tun
+              mountPath: /dev/net/tun
         - name: deluge
           #image: linuxserver/deluge:latest
           image: linuxserver/deluge:2.2.0-r1-ls364
