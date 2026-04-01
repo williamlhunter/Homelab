@@ -38,7 +38,7 @@ spec:
             - name: DNS_KEEP_NAMESERVER
               value: "on"
             - name: WIREGUARD_MTU
-              value: "1320"
+              value: "1280"
         - name: deluge
           #image: linuxserver/deluge:latest
           image: linuxserver/deluge:2.2.0-r1-ls364
