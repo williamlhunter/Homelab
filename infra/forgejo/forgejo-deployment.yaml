@@ -26,6 +26,7 @@ spec:
           image: codeberg.org/forgejo/forgejo:14-rootless
           ports:
             - containerPort: 3000
+            - containerPort: 2222
           volumeMounts:
             - name: data
               mountPath: /var/lib/gitea
