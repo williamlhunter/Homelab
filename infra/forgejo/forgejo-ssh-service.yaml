@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: forgejo-ssh
   annotations:
-    metallb.universe.tf/allow-shared-ip: "homelab"
+  metallb.universe.tf/loadBalancerIPs: "192.168.3.95"
 spec:
   selector:
     app: forgejo
