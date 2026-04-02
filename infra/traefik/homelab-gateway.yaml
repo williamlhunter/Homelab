@@ -3,9 +3,6 @@ kind: Gateway
 metadata:
   name: homelab-gateway
   namespace: default
-  annotations: 
-    metallb.universe.tf/loadBalancerIPs: "192.168.3.95"
-    metallb.universe.tf/allow-shared-ip: "homelab"
 spec:
   gatewayClassName: traefik
   listeners:

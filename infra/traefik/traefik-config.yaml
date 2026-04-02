@@ -18,3 +18,7 @@ spec:
           default: true
         exposedPort: 443
         protocol: TCP
+    service:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: "homelab"
+        metallb.universe.tf/loadBalancerIPs: "192.168.3.95"
