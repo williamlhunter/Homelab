@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: speedtest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: speedtest
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: speedtest
+    spec:
+      containers:
+        - name: speedtest
+          image: ghcr.io/librespeed/speedtest:latest
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: data
+              mountPath: /database
+          env:
+            - name: MODE
+              value: standalone
+            - name: TZ
+              value: America/Denver
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: speedtest-pvc
