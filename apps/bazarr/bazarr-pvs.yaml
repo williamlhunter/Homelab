@@ -6,7 +6,7 @@ spec:
   capacity:
     storage: 1Ti
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   nfs:
     server: truenas.billnet.local
     path: /mnt/rust/Data/media
