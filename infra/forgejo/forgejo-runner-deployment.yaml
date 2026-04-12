@@ -65,6 +65,7 @@ spec:
           env:
             - name: DOCKER_TLS_CERTDIR
               value: ""
+          command: ["dockerd", "--host=tcp://0.0.0.0:2375", "--insecure-registry=forgejo-http:3000"]
           volumeMounts:
             - name: runner-data
               mountPath: /data
