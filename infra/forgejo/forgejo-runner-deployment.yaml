@@ -12,6 +12,20 @@ spec:
       labels:
         app: forgejo-runner
     spec:
+      initContainers:
+        - name: register
+          image: code.forgejo.org/forgejo/runner:6.3.1
+          command:
+            - sh
+            - -c
+            - |
+              if [ ! -f /data/.runner ]; then
+                forgejo-runner register \
+                  --no-interactive \
+                  --instance http://forgejo-http:3000 \
+                  --token $(FORGEJO_RUNNER_REGISTRATION_TOKEN) \
+                  --name k8s-runner
+              fi
       containers:
         - name: runner
           image: code.forgejo.org/forgejo/runner:6.3.1
