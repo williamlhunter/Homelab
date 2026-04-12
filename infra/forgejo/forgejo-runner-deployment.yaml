@@ -26,6 +26,15 @@ spec:
                   --token $(FORGEJO_RUNNER_REGISTRATION_TOKEN) \
                   --name k8s-runner
               fi
+          env:
+            - name: FORGEJO_RUNNER_REGISTRATION_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: forgejo-runner-secret
+                  key: token
+          volumeMounts:
+            - name: runner-data
+              mountPath: /data
       containers:
         - name: runner
           image: code.forgejo.org/forgejo/runner:6.3.1
