@@ -47,11 +47,7 @@ spec:
           command: ["forgejo-runner", "daemon"]
           env:
             - name: DOCKER_HOST
-              value: tcp://localhost:2376
-            - name: DOCKER_TLS_VERIFY
-              value: "1"
-            - name: DOCKER_CERT_PATH
-              value: /certs/client
+              value: tcp://localhost:2375
             - name: FORGEJO_RUNNER_REGISTRATION_TOKEN
               valuefrom:
                 secretKeyRef:
@@ -60,8 +56,6 @@ spec:
             - name: FORGEJO_RUNNER_INSTANCE
               value: "http://forgejo-http:3000"
           volumeMounts:
-            - name: docker-certs
-              mountPath: /certs/client
             - name: runner-data
               mountPath: /data
         - name: dind
@@ -70,15 +64,11 @@ spec:
             privileged: true
           env:
             - name: DOCKER_TLS_CERTDIR
-              value: /certs
+              value: ""
           volumeMounts:
-            - name: docker-certs
-              mountPath: /certs
             - name: runner-data
               mountPath: /data
       volumes:
-        - name: docker-certs
-          emptDir: {}
         - name: runner-data
           persistentVolumeClaim:
             claimName: forgejo-runner-pvc
