@@ -44,6 +44,7 @@ spec:
       containers:
         - name: runner
           image: code.forgejo.org/forgejo/runner:6.3.1
+          command: ["forgejo-runner", "daemon"]
           env:
             - name: DOCKER_HOST
               value: tcp://localhost:2376
