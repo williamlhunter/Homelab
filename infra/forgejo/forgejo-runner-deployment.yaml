@@ -13,6 +13,12 @@ spec:
         app: forgejo-runner
     spec:
       initContainers:
+        - name: fix-permissions
+          image: busybox
+          command: ["chown", "-R", "1000:1000", "/data"]
+          volumeMounts:
+            - name: runner-data
+              mountPath: /data
         - name: register
           image: code.forgejo.org/forgejo/runner:6.3.1
           command:
