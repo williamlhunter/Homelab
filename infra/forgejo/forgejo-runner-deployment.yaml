@@ -47,7 +47,7 @@ spec:
           command: ["forgejo-runner", "daemon"]
           env:
             - name: DOCKER_HOST
-              value: tcp://localhost:2375
+              value: unix:///var/run/docker.sock
             - name: FORGEJO_RUNNER_REGISTRATION_TOKEN
               valuefrom:
                 secretKeyRef:
@@ -58,6 +58,8 @@ spec:
           volumeMounts:
             - name: runner-data
               mountPath: /data
+            - name: docker-sock
+              mountPath: /ver/run
         - name: dind
           image: docker:dind
           securityContext:
@@ -65,11 +67,15 @@ spec:
           env:
             - name: DOCKER_TLS_CERTDIR
               value: ""
-          command: ["dockerd", "--host=tcp://0.0.0.0:2375", "--insecure-registry=forgejo-http:3000"]
+          command: ["dockerd", "--host=unix:///var/run/docker.sock", "--host=tcp://0.0.0.0:2375", "--insecure-registry=forgejo-http:3000"]
           volumeMounts:
             - name: runner-data
               mountPath: /data
+            - name: docker-sock
+              mountPath: /ver/run
       volumes:
+        - name: docker-sock
+          empttDir: {}
         - name: runner-data
           persistentVolumeClaim:
             claimName: forgejo-runner-pvc
