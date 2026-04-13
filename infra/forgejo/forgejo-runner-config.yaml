@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: forgejo-runner-config
 data:
-  config-yaml: |
+  config.yaml: |
     log:
       level: info
       job_level: info
