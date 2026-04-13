@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: forgejo-runner-config
+data:
+  config-yaml: |
+    log:
+      level: info
+      job_level: info
+    runner:
+      file: .runner
+      capacity: 1
+      envs:
+        A_TEST_ENV_NAME_1: a_test_env_value_1
+        A_TEST_ENV_NAME_2: a_test_env_value_2
+      env_file: .env
+      timeout: 3h
+      shutdown_timeout: 3h
+      insecure: false
+      fetch_timeout: 5s
+      fetch_interval: 2s
+      report_interval: 1s
+      labels: []
+    cache:
+      enabled: true
+      dir: ""
+      host: ""
+      port: 0
+      proxy_port: 0
+      external_server: ""
+      secret: ""
+      actions_cache_url_override: ""
+    container:
+      network: ""
+      enable_ipv6: false
+      privileged: false
+      options:
+      workdir_parent:
+      valid_volumes:
+        - '**'
+      docker_host: "automount"
+      force_pull: false
+      force_rebuild: false
+    host:
+      workdir_parent:
